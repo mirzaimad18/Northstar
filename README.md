@@ -2,6 +2,13 @@
 
 A single-page e-commerce storefront built with HTML, CSS, and vanilla JavaScript, backed by an Express API and SQLite.
 
+## Get the code
+
+```bash
+git clone https://github.com/mirzaimad18/Northstar.git
+cd Northstar
+```
+
 ## Run locally
 
 1. Install Node.js and npm.
