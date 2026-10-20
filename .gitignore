@@ -1,0 +1,9 @@
+node_modules/
+store.db
+store.db-*
+*.sqlite
+*.sqlite3
+.env
+.env.*
+!.env.example
+npm-debug.log*

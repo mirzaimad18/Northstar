@@ -1,0 +1,1687 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Shop a thoughtful collection of everyday essentials."
+    />
+    <title>Northstar Supply — Everyday, considered.</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #17211c;
+        --muted: #68746d;
+        --paper: #f7f8f4;
+        --surface: #fff;
+        --line: #e6eae4;
+        --green: #245c43;
+        --green-dark: #194531;
+        --lime: #d9f078;
+        --soft-green: #eef4e9;
+        --danger: #a33e35;
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-width: 320px;
+        background: var(--paper);
+        color: var(--ink);
+      }
+
+      button,
+      input {
+        font: inherit;
+      }
+
+      button {
+        cursor: pointer;
+      }
+
+      button:focus-visible,
+      input:focus-visible {
+        outline: 3px solid #a4c966;
+        outline-offset: 2px;
+      }
+
+      .topbar {
+        position: sticky;
+        z-index: 5;
+        top: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 76px;
+        padding: 0 max(5vw, calc((100vw - 1280px) / 2));
+        border-bottom: 1px solid var(--line);
+        background: rgb(255 255 255 / 94%);
+        backdrop-filter: blur(14px);
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 11px;
+        color: var(--ink);
+        font-size: 17px;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        text-decoration: none;
+      }
+
+      .brand-mark {
+        display: grid;
+        width: 34px;
+        height: 34px;
+        place-items: center;
+        border-radius: 11px;
+        background: var(--green);
+        color: white;
+        font-size: 17px;
+      }
+
+      .cart-jump {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 9px 13px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: white;
+        color: var(--ink);
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .cart-count {
+        display: grid;
+        width: 23px;
+        height: 23px;
+        place-items: center;
+        border-radius: 50%;
+        background: var(--lime);
+        font-size: 12px;
+      }
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .account-button {
+        max-width: 170px;
+        min-height: 40px;
+        overflow: hidden;
+        padding: 0 15px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: white;
+        color: var(--ink);
+        font-size: 13px;
+        font-weight: 700;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .account-button:hover {
+        background: var(--soft-green);
+      }
+
+      main {
+        width: min(1280px, 90%);
+        margin: 0 auto;
+      }
+
+      .hero {
+        position: relative;
+        display: flex;
+        min-height: 280px;
+        align-items: center;
+        overflow: hidden;
+        margin: 38px 0 42px;
+        padding: clamp(30px, 6vw, 70px);
+        border-radius: 24px;
+        background:
+          radial-gradient(circle at 85% 20%, rgb(217 240 120 / 34%), transparent 25%),
+          linear-gradient(115deg, #e9f0e5, #f1f4e9 60%, #e7eddd);
+      }
+
+      .hero::after {
+        position: absolute;
+        right: 9%;
+        bottom: -100px;
+        width: 290px;
+        height: 290px;
+        border: 1px solid rgb(36 92 67 / 13%);
+        border-radius: 50%;
+        box-shadow:
+          0 0 0 26px rgb(36 92 67 / 4%),
+          0 0 0 54px rgb(36 92 67 / 4%);
+        content: "";
+      }
+
+      .hero-copy {
+        position: relative;
+        z-index: 1;
+        max-width: 560px;
+      }
+
+      .eyebrow {
+        margin: 0 0 15px;
+        color: var(--green);
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        max-width: 520px;
+        margin: 0;
+        font-size: clamp(37px, 6vw, 66px);
+        letter-spacing: -0.065em;
+        line-height: 0.99;
+      }
+
+      .hero-copy > p:last-child {
+        max-width: 410px;
+        margin: 20px 0 0;
+        color: #56635a;
+        font-size: 15px;
+        line-height: 1.7;
+      }
+
+      .shop-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 340px;
+        align-items: start;
+        gap: 38px;
+        padding-bottom: 70px;
+      }
+
+      .section-heading {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 20px;
+      }
+
+      .section-heading h2,
+      .cart-heading h2 {
+        margin: 0;
+        font-size: 23px;
+        letter-spacing: -0.045em;
+      }
+
+      .section-heading p {
+        margin: 6px 0 0;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .collection-tools {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 180px;
+        gap: 10px;
+        margin: 0 0 18px;
+      }
+
+      .collection-tools input,
+      .collection-tools select {
+        width: 100%;
+        min-height: 44px;
+        padding: 0 13px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: white;
+        color: var(--ink);
+        font-size: 13px;
+      }
+
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 17px;
+      }
+
+      .product-card {
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 17px;
+        background: var(--surface);
+        transition:
+          transform 160ms ease,
+          box-shadow 160ms ease;
+      }
+
+      .product-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 28px rgb(28 46 34 / 8%);
+      }
+
+      .product-art {
+        display: grid;
+        min-height: 150px;
+        place-items: center;
+        background:
+          radial-gradient(circle at 50% 55%, rgb(255 255 255 / 80%) 0 21%, transparent 22%),
+          linear-gradient(135deg, #eaf0e4, #f1f2e8);
+        color: var(--green);
+        font-size: 54px;
+      }
+
+      .product-art svg {
+        width: 128px;
+        height: 128px;
+        filter: drop-shadow(0 12px 12px rgb(26 54 38 / 16%));
+      }
+
+      .detail-art svg {
+        width: min(62%, 280px);
+        height: auto;
+        filter: drop-shadow(0 22px 18px rgb(26 54 38 / 18%));
+      }
+
+      .product-card:nth-child(4n + 2) .product-art {
+        background:
+          radial-gradient(circle at 50% 55%, rgb(255 255 255 / 80%) 0 21%, transparent 22%),
+          linear-gradient(135deg, #e6eef1, #edf1eb);
+      }
+
+      .product-card:nth-child(4n + 3) .product-art {
+        background:
+          radial-gradient(circle at 50% 55%, rgb(255 255 255 / 80%) 0 21%, transparent 22%),
+          linear-gradient(135deg, #f2eadf, #f3f0e7);
+      }
+
+      .product-card:nth-child(4n) .product-art {
+        background:
+          radial-gradient(circle at 50% 55%, rgb(255 255 255 / 80%) 0 21%, transparent 22%),
+          linear-gradient(135deg, #ece8f0, #f1efe8);
+      }
+
+      .product-info {
+        padding: 17px;
+      }
+
+      .product-meta {
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      .product-meta h3 {
+        margin: 0;
+        font-size: 16px;
+        letter-spacing: -0.025em;
+      }
+
+      .product-price {
+        flex: 0 0 auto;
+        color: var(--green);
+        font-size: 15px;
+        font-weight: 800;
+      }
+
+      .product-description {
+        min-height: 39px;
+        margin: 9px 0 15px;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.6;
+      }
+
+      .primary-button,
+      .secondary-button {
+        display: inline-flex;
+        min-height: 42px;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        border: 0;
+        border-radius: 10px;
+        font-size: 13px;
+        font-weight: 750;
+        transition: background 150ms ease;
+      }
+
+      .primary-button {
+        width: 100%;
+        background: var(--green);
+        color: white;
+      }
+
+      .primary-button:hover {
+        background: var(--green-dark);
+      }
+
+      .primary-button:disabled {
+        cursor: wait;
+        opacity: 0.62;
+      }
+
+      .secondary-button {
+        padding: 0 14px;
+        border: 1px solid var(--line);
+        background: white;
+        color: var(--ink);
+      }
+
+      .secondary-button:hover {
+        background: var(--soft-green);
+      }
+
+      .product-actions {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 9px;
+      }
+
+      .details-button {
+        min-height: 42px;
+        padding: 0 12px;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        background: white;
+        color: var(--ink);
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .details-button:hover {
+        border-color: #cbd8c9;
+        background: var(--soft-green);
+      }
+
+      .detail-page {
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr);
+        gap: clamp(24px, 5vw, 64px);
+        padding: 8px 0 24px;
+      }
+
+      .detail-art {
+        display: grid;
+        min-height: 390px;
+        place-items: center;
+        overflow: hidden;
+        border-radius: 20px;
+        background:
+          radial-gradient(circle at 50% 52%, rgb(255 255 255 / 80%) 0 19%, transparent 20%),
+          linear-gradient(135deg, #eaf0e4, #f1f2e8);
+        color: var(--green);
+        font-size: clamp(100px, 18vw, 190px);
+      }
+
+      .detail-copy {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: center;
+      }
+
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 36px;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: var(--green);
+        font-size: 13px;
+        font-weight: 750;
+      }
+
+      .detail-copy h2 {
+        margin: 0;
+        font-size: clamp(32px, 4vw, 48px);
+        letter-spacing: -0.06em;
+        line-height: 1.05;
+      }
+
+      .detail-price {
+        margin: 17px 0 0;
+        color: var(--green);
+        font-size: 22px;
+        font-weight: 800;
+      }
+
+      .detail-description {
+        max-width: 480px;
+        margin: 18px 0 25px;
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.8;
+      }
+
+      .detail-benefits {
+        display: grid;
+        gap: 11px;
+        margin: 0 0 27px;
+        padding: 0;
+        color: #47564c;
+        font-size: 13px;
+        list-style: none;
+      }
+
+      .detail-benefits li::before {
+        margin-right: 9px;
+        color: var(--green);
+        content: "✓";
+        font-weight: 800;
+      }
+
+      .detail-add {
+        max-width: 270px;
+      }
+
+      .detail-unavailable {
+        width: 100%;
+      }
+
+      .account-dialog {
+        width: min(440px, calc(100% - 30px));
+        max-height: min(720px, calc(100% - 30px));
+        padding: 0;
+        overflow: auto;
+        border: 1px solid var(--line);
+        border-radius: 19px;
+        background: white;
+        color: var(--ink);
+        box-shadow: 0 24px 80px rgb(13 32 20 / 22%);
+      }
+
+      .account-dialog::backdrop {
+        background: rgb(14 25 18 / 52%);
+        backdrop-filter: blur(3px);
+      }
+
+      .dialog-content {
+        padding: 26px;
+      }
+
+      .dialog-heading {
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+        gap: 18px;
+        margin-bottom: 7px;
+      }
+
+      .dialog-heading h2 {
+        margin: 0;
+        font-size: 24px;
+        letter-spacing: -0.045em;
+      }
+
+      .dialog-close {
+        display: grid;
+        width: 34px;
+        height: 34px;
+        flex: 0 0 auto;
+        place-items: center;
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        background: white;
+        color: var(--ink);
+        font-size: 20px;
+      }
+
+      .dialog-description {
+        margin: 0 0 18px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.6;
+      }
+
+      .auth-form {
+        display: grid;
+        gap: 13px;
+      }
+
+      .auth-form label {
+        display: grid;
+        gap: 6px;
+        color: #4f5a53;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .auth-form input {
+        width: 100%;
+        min-height: 43px;
+        padding: 0 12px;
+        border: 1px solid var(--line);
+        border-radius: 9px;
+        background: #fcfdfb;
+        color: var(--ink);
+        font-size: 14px;
+      }
+
+      .auth-form .primary-button {
+        margin-top: 3px;
+      }
+
+      .auth-switch {
+        width: 100%;
+        margin-top: 13px;
+        padding: 6px;
+        border: 0;
+        background: transparent;
+        color: var(--green);
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .account-summary {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .account-summary .auth-switch {
+        width: auto;
+        flex: 0 0 auto;
+        margin: 0 0 0 auto;
+      }
+
+      .account-summary strong {
+        color: var(--ink);
+      }
+
+      .cart-panel {
+        position: sticky;
+        top: 96px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 17px;
+        background: white;
+        box-shadow: 0 10px 30px rgb(28 46 34 / 4%);
+      }
+
+      .cart-heading {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 20px 16px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .cart-heading span {
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .cart-content {
+        padding: 3px 20px 18px;
+      }
+
+      .cart-empty {
+        padding: 25px 0;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.6;
+        text-align: center;
+      }
+
+      .cart-empty-icon {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 27px;
+      }
+
+      .cart-item {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 9px;
+        padding: 15px 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .cart-item-name {
+        margin: 0;
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .cart-item-price {
+        margin: 5px 0 0;
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .quantity-control {
+        display: inline-flex;
+        height: 29px;
+        align-items: center;
+        gap: 11px;
+        padding: 0 7px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+      }
+
+      .quantity-control button {
+        width: 20px;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        color: var(--green);
+        font-size: 17px;
+        line-height: 1;
+      }
+
+      .quantity-control span {
+        min-width: 12px;
+        font-size: 12px;
+        text-align: center;
+      }
+
+      .cart-total {
+        display: flex;
+        justify-content: space-between;
+        padding: 17px 0;
+        font-size: 14px;
+        font-weight: 800;
+      }
+
+      .checkout-note {
+        margin: 11px 0 0;
+        color: var(--muted);
+        font-size: 11px;
+        line-height: 1.5;
+        text-align: center;
+      }
+
+      .status-message {
+        margin: 0 0 12px;
+        color: var(--green);
+        font-size: 12px;
+        line-height: 1.5;
+      }
+
+      .status-message.error {
+        color: var(--danger);
+      }
+
+      .loading,
+      .empty-products {
+        grid-column: 1 / -1;
+        padding: 34px 20px;
+        border: 1px dashed #d8dfd4;
+        border-radius: 14px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.6;
+        text-align: center;
+      }
+
+      footer {
+        padding: 23px 5%;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-size: 12px;
+        text-align: center;
+      }
+
+      @media (max-width: 850px) {
+        .shop-layout {
+          grid-template-columns: minmax(0, 1fr) 300px;
+          gap: 22px;
+        }
+
+        .product-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 680px) {
+        .topbar {
+          min-height: 66px;
+          padding: 0 5%;
+        }
+
+        main {
+          width: 90%;
+        }
+
+        .hero {
+          min-height: 250px;
+          margin: 24px 0 29px;
+          padding: 28px;
+          border-radius: 18px;
+        }
+
+        .hero::after {
+          right: -120px;
+        }
+
+        .header-actions {
+          gap: 7px;
+        }
+
+        .account-button {
+          min-height: 37px;
+          padding: 0 11px;
+          font-size: 12px;
+        }
+
+        .cart-jump {
+          gap: 7px;
+          padding: 7px 9px;
+        }
+
+        .shop-layout {
+          grid-template-columns: 1fr;
+          gap: 28px;
+          padding-bottom: 42px;
+        }
+
+        .product-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 12px;
+        }
+
+        .product-art {
+          min-height: 120px;
+          font-size: 43px;
+        }
+
+        .product-info {
+          padding: 13px;
+        }
+
+        .product-meta {
+          display: block;
+        }
+
+        .product-meta h3 {
+          min-height: 38px;
+          font-size: 14px;
+        }
+
+        .product-price {
+          display: block;
+          margin-top: 5px;
+        }
+
+        .product-description {
+          min-height: 58px;
+          font-size: 11px;
+        }
+
+        .collection-tools {
+          grid-template-columns: 1fr;
+        }
+
+        .detail-page {
+          grid-template-columns: 1fr;
+          gap: 23px;
+        }
+
+        .detail-art {
+          min-height: 250px;
+          font-size: 120px;
+        }
+
+        .back-link {
+          margin-bottom: 22px;
+        }
+
+        .detail-description {
+          font-size: 14px;
+        }
+
+        .cart-panel {
+          position: static;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Northstar Supply home">
+        <span class="brand-mark" aria-hidden="true">N</span>
+        <span>northstar supply</span>
+      </a>
+      <div class="header-actions">
+        <button class="cart-jump" id="cart-jump" type="button" aria-label="Shopping cart, 0 items">
+          <span aria-hidden="true">Bag</span>
+          <span class="cart-count" id="cart-count" aria-live="polite">0</span>
+        </button>
+        <button class="account-button" id="account-button" type="button">Sign in</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Thoughtful things, made useful</p>
+          <h1 id="hero-title">Everyday,<br />considered.</h1>
+          <p>Well-made essentials for wherever the day takes you. Find your next favorite.</p>
+        </div>
+      </section>
+
+      <div class="shop-layout">
+        <section id="collection-section" aria-labelledby="products-title">
+          <div id="collection-view">
+          <div class="section-heading">
+            <div>
+              <h2 id="products-title">The collection</h2>
+              <p>A few good things for the everyday.</p>
+            </div>
+          </div>
+          <div class="collection-tools">
+            <input id="product-search" type="search" placeholder="Search the collection" aria-label="Search products" />
+            <select id="product-sort" aria-label="Sort products">
+              <option value="featured">Featured</option>
+              <option value="price-asc">Price: low to high</option>
+              <option value="price-desc">Price: high to low</option>
+              <option value="name">Name: A to Z</option>
+            </select>
+          </div>
+          <div class="product-grid" id="product-grid" aria-live="polite">
+            <p class="loading">Loading the collection…</p>
+          </div>
+          </div>
+          <div id="product-detail" hidden></div>
+        </section>
+
+        <aside class="cart-panel" id="cart" aria-labelledby="cart-title">
+          <div class="cart-heading">
+            <h2 id="cart-title">Your bag</h2>
+            <span id="cart-item-count">0 items</span>
+          </div>
+          <div class="cart-content">
+            <div id="cart-items"></div>
+            <div class="cart-total">
+              <span>Total</span>
+              <span id="cart-total">$0.00</span>
+            </div>
+            <p class="status-message" id="checkout-status" role="status" aria-live="polite" hidden></p>
+            <button class="primary-button" id="checkout-button" type="button" disabled>
+              Checkout
+            </button>
+            <p class="checkout-note" id="checkout-note">Guest checkout is available. Sign in to link this order to your account.</p>
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <footer>Northstar Supply · Everyday essentials, thoughtfully chosen.</footer>
+
+    <dialog class="account-dialog" id="account-dialog" aria-labelledby="auth-title">
+      <div class="dialog-content">
+        <div class="dialog-heading">
+          <h2 id="auth-title">Welcome back</h2>
+          <button class="dialog-close" id="auth-close" type="button" aria-label="Close sign-in dialog">×</button>
+        </div>
+        <p class="dialog-description" id="auth-description">Sign in to link your orders to your account.</p>
+        <p class="status-message" id="auth-status" role="status" aria-live="polite" hidden></p>
+        <form class="auth-form" id="auth-form">
+          <label id="name-field" hidden>
+            Name
+            <input name="name" autocomplete="name" maxlength="100" />
+          </label>
+          <label>
+            Email
+            <input name="email" type="email" autocomplete="email" maxlength="254" required />
+          </label>
+          <label>
+            Password
+            <input name="password" type="password" autocomplete="current-password" minlength="6" required />
+          </label>
+          <button class="primary-button" id="auth-submit" type="submit">Sign in</button>
+        </form>
+        <button class="auth-switch" id="auth-switch" type="button">New here? Create an account</button>
+        <div class="account-summary" id="account-summary" hidden>
+          Signed in as <strong id="account-name"></strong>
+          <button class="auth-switch" id="sign-out" type="button">Sign out</button>
+        </div>
+      </div>
+    </dialog>
+
+    <script>
+      (() => {
+        const PRODUCTS_URL = "http://localhost:5000/api/products";
+        const REGISTER_URL = "http://localhost:5000/api/register";
+        const LOGIN_URL = "http://localhost:5000/api/login";
+        const ORDERS_URL = "http://localhost:5000/api/orders";
+        const CART_STORAGE_KEY = "northstar-cart";
+        const USER_STORAGE_KEY = "northstar-user";
+        const productGrid = document.querySelector("#product-grid");
+        const collectionView = document.querySelector("#collection-view");
+        const productDetail = document.querySelector("#product-detail");
+        const searchInput = document.querySelector("#product-search");
+        const sortSelect = document.querySelector("#product-sort");
+        const cartItems = document.querySelector("#cart-items");
+        const cartCount = document.querySelector("#cart-count");
+        const cartItemCount = document.querySelector("#cart-item-count");
+        const cartTotal = document.querySelector("#cart-total");
+        const cartJump = document.querySelector("#cart-jump");
+        const accountButton = document.querySelector("#account-button");
+        const accountDialog = document.querySelector("#account-dialog");
+        const authClose = document.querySelector("#auth-close");
+        const authForm = document.querySelector("#auth-form");
+        const authTitle = document.querySelector("#auth-title");
+        const authDescription = document.querySelector("#auth-description");
+        const authSubmit = document.querySelector("#auth-submit");
+        const authSwitch = document.querySelector("#auth-switch");
+        const authStatus = document.querySelector("#auth-status");
+        const nameField = document.querySelector("#name-field");
+        const nameInput = authForm.elements.namedItem("name");
+        const emailInput = authForm.elements.namedItem("email");
+        const passwordInput = authForm.elements.namedItem("password");
+        const accountSummary = document.querySelector("#account-summary");
+        const accountName = document.querySelector("#account-name");
+        const signOutButton = document.querySelector("#sign-out");
+        const checkoutNote = document.querySelector("#checkout-note");
+        const checkoutButton = document.querySelector("#checkout-button");
+        const checkoutStatus = document.querySelector("#checkout-status");
+
+        let products = [];
+        let cart = readCart();
+        let account = readAccount();
+        let authMode = "login";
+        let isCheckingOut = false;
+
+        function readCart() {
+          try {
+            const saved = JSON.parse(localStorage.getItem(CART_STORAGE_KEY) || "{}");
+            if (!saved || typeof saved !== "object" || Array.isArray(saved)) {
+              return {};
+            }
+            return Object.fromEntries(
+              Object.entries(saved).filter(
+                ([id, quantity]) =>
+                  /^\d+$/.test(id) && Number.isInteger(quantity) && quantity > 0,
+              ),
+            );
+          } catch (error) {
+            console.error("Could not read the saved shopping cart.", error);
+            return {};
+          }
+        }
+
+        function readAccount() {
+          try {
+            const saved = JSON.parse(sessionStorage.getItem(USER_STORAGE_KEY) || "null");
+            if (
+              saved &&
+              Number.isInteger(saved.id) &&
+              saved.id > 0 &&
+              typeof saved.name === "string" &&
+              typeof saved.email === "string" &&
+              typeof saved.token === "string" &&
+              /^[a-f0-9]{64}$/i.test(saved.token)
+            ) {
+              return saved;
+            }
+          } catch (error) {
+            console.log("Could not restore the account for this session:", error);
+          }
+          return null;
+        }
+
+        function saveCart() {
+          try {
+            localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+          } catch (error) {
+            console.error("Could not save the shopping cart.", error);
+            showStatus(checkoutStatus, "Your cart could not be saved in this browser.", true);
+          }
+        }
+
+        function formatPrice(amount) {
+          return new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "USD",
+          }).format(amount);
+        }
+
+        function renderProductArtwork(container, name) {
+          const value = name.toLowerCase();
+          const svgNamespace = "http://www.w3.org/2000/svg";
+          const svg = document.createElementNS(svgNamespace, "svg");
+          svg.setAttribute("viewBox", "0 0 120 120");
+          svg.setAttribute("aria-hidden", "true");
+
+          function shape(tag, attributes) {
+            const element = document.createElementNS(svgNamespace, tag);
+            for (const [attribute, attributeValue] of Object.entries(attributes)) {
+              element.setAttribute(attribute, attributeValue);
+            }
+            svg.append(element);
+          }
+
+          if (value.includes("headphone")) {
+            shape("path", {
+              d: "M25 62v-8a35 35 0 0 1 70 0v8",
+              fill: "none",
+              stroke: "#183f30",
+              "stroke-linecap": "round",
+              "stroke-width": "9",
+            });
+            shape("rect", { x: "18", y: "55", width: "24", height: "40", rx: "10", fill: "#315e47" });
+            shape("rect", { x: "78", y: "55", width: "24", height: "40", rx: "10", fill: "#315e47" });
+            shape("rect", { x: "24", y: "62", width: "11", height: "25", rx: "5", fill: "#d9f078" });
+            shape("rect", { x: "85", y: "62", width: "11", height: "25", rx: "5", fill: "#d9f078" });
+          } else if (value.includes("watch")) {
+            shape("rect", { x: "43", y: "10", width: "34", height: "100", rx: "16", fill: "#b9c7a9" });
+            shape("rect", { x: "31", y: "32", width: "58", height: "58", rx: "19", fill: "#183f30" });
+            shape("rect", { x: "37", y: "38", width: "46", height: "46", rx: "14", fill: "#d9f078" });
+            shape("path", {
+              d: "M60 47v14l10 7",
+              fill: "none",
+              stroke: "#315e47",
+              "stroke-linecap": "round",
+              "stroke-linejoin": "round",
+              "stroke-width": "4",
+            });
+            shape("circle", { cx: "60", cy: "61", r: "3", fill: "#183f30" });
+          } else if (value.includes("backpack")) {
+            shape("path", {
+              d: "M39 35a21 21 0 0 1 42 0h8a10 10 0 0 1 10 10v49a11 11 0 0 1-11 11H32a11 11 0 0 1-11-11V45a10 10 0 0 1 10-10h8Z",
+              fill: "#315e47",
+            });
+            shape("path", {
+              d: "M43 35a17 17 0 0 1 34 0",
+              fill: "none",
+              stroke: "#d9f078",
+              "stroke-linecap": "round",
+              "stroke-width": "4",
+            });
+            shape("rect", { x: "34", y: "61", width: "52", height: "29", rx: "10", fill: "#47765b" });
+            shape("path", {
+              d: "M47 64v9h26v-9M60 74v10",
+              fill: "none",
+              stroke: "#d9f078",
+              "stroke-linecap": "round",
+              "stroke-width": "3",
+            });
+          } else if (value.includes("speaker")) {
+            shape("rect", { x: "34", y: "12", width: "52", height: "96", rx: "22", fill: "#183f30" });
+            shape("rect", { x: "40", y: "18", width: "40", height: "84", rx: "17", fill: "#315e47" });
+            shape("circle", { cx: "60", cy: "49", r: "13", fill: "#d9f078" });
+            shape("circle", { cx: "60", cy: "49", r: "5", fill: "#183f30" });
+            shape("circle", { cx: "60", cy: "78", r: "9", fill: "#b9c7a9" });
+            shape("circle", { cx: "60", cy: "78", r: "3", fill: "#183f30" });
+          } else {
+            shape("path", {
+              d: "M60 12 72 47l36 13-36 13-12 35-12-35L12 60l36-13 12-35Z",
+              fill: "#315e47",
+            });
+            shape("circle", { cx: "60", cy: "60", r: "9", fill: "#d9f078" });
+          }
+
+          container.replaceChildren(svg);
+        }
+
+        function getProductById(id) {
+          return products.find((product) => String(product.id) === String(id));
+        }
+
+        function navigateToProduct(id) {
+          history.pushState({ storeProductDetail: true }, "", `#product/${id}`);
+          renderRoute();
+        }
+
+        function navigateToCollection() {
+          if (history.state?.storeProductDetail) {
+            history.back();
+            return;
+          }
+          history.replaceState(null, "", `${location.pathname}${location.search}`);
+          renderRoute();
+        }
+
+        function renderProductDetail(product) {
+          collectionView.hidden = true;
+          productDetail.hidden = false;
+          productDetail.replaceChildren();
+
+          if (!product) {
+            const missing = document.createElement("div");
+            missing.className = "empty-products";
+            missing.textContent = "That product could not be found in the collection.";
+            const back = document.createElement("button");
+            back.className = "back-link";
+            back.type = "button";
+            back.dataset.navigate = "collection";
+            back.textContent = "← Back to collection";
+            missing.append(document.createElement("br"), back);
+            productDetail.append(missing);
+            return;
+          }
+
+          const page = document.createElement("article");
+          page.className = "detail-page";
+          const art = document.createElement("div");
+          art.className = "detail-art";
+          renderProductArtwork(art, product.name);
+
+          const copy = document.createElement("div");
+          copy.className = "detail-copy";
+          const back = document.createElement("button");
+          back.className = "back-link";
+          back.type = "button";
+          back.dataset.navigate = "collection";
+          back.textContent = "← Back to collection";
+          const eyebrow = document.createElement("p");
+          eyebrow.className = "eyebrow";
+          eyebrow.textContent = "Thoughtfully selected";
+          const title = document.createElement("h2");
+          title.textContent = product.name;
+          const price = document.createElement("p");
+          price.className = "detail-price";
+          price.textContent = formatPrice(product.price);
+          const description = document.createElement("p");
+          description.className = "detail-description";
+          description.textContent = product.description;
+          const benefits = document.createElement("ul");
+          benefits.className = "detail-benefits";
+          for (const text of [
+            "Carefully selected for everyday use",
+            "Simple, reliable essentials",
+            "Easy guest checkout",
+          ]) {
+            const benefit = document.createElement("li");
+            benefit.textContent = text;
+            benefits.append(benefit);
+          }
+          const add = document.createElement("button");
+          add.className = "primary-button detail-add";
+          add.type = "button";
+          add.dataset.addProduct = String(product.id);
+          add.textContent = "Add to bag";
+          copy.append(back, eyebrow, title, price, description, benefits, add);
+          page.append(art, copy);
+          productDetail.append(page);
+        }
+
+        function renderRoute() {
+          const match = window.location.hash.match(/^#product\/(\d+)$/);
+          if (match) {
+            renderProductDetail(getProductById(match[1]));
+            window.scrollTo({ top: 0, behavior: "smooth" });
+            return;
+          }
+
+          collectionView.hidden = false;
+          productDetail.hidden = true;
+          productDetail.replaceChildren();
+        }
+
+        function showStatus(element, message, isError = false) {
+          element.textContent = message;
+          element.classList.toggle("error", isError);
+          element.hidden = !message;
+        }
+
+        async function request(url, options = {}) {
+          let response;
+          try {
+            response = await fetch(url, options);
+          } catch (error) {
+            console.log("Store API connection issue:", error);
+            throw new Error(
+              "Could not reach the store API. Make sure the backend is running at http://localhost:5000.",
+              { cause: error },
+            );
+          }
+
+          const result = await response.json().catch(() => ({}));
+          if (!response.ok) {
+            const error = new Error(result.error || result.message || "The request could not be completed.");
+            error.status = response.status;
+            throw error;
+          }
+          return result;
+        }
+
+        function renderProducts() {
+          productGrid.replaceChildren();
+          const term = searchInput.value.trim().toLocaleLowerCase();
+          const visibleProducts = products
+            .filter((product) =>
+              `${product.name} ${product.description}`.toLocaleLowerCase().includes(term),
+            )
+            .sort((left, right) => {
+              switch (sortSelect.value) {
+                case "price-asc":
+                  return left.price - right.price;
+                case "price-desc":
+                  return right.price - left.price;
+                case "name":
+                  return left.name.localeCompare(right.name);
+                default:
+                  return left.id - right.id;
+              }
+            });
+          if (!visibleProducts.length) {
+            const empty = document.createElement("p");
+            empty.className = "empty-products";
+            empty.textContent = products.length
+              ? "No products match that search. Try a different name or description."
+              : "There are no products to show just yet.";
+            productGrid.append(empty);
+            return;
+          }
+
+          for (const product of visibleProducts) {
+            const card = document.createElement("article");
+            card.className = "product-card";
+
+            const art = document.createElement("div");
+            art.className = "product-art";
+            renderProductArtwork(art, product.name);
+
+            const info = document.createElement("div");
+            info.className = "product-info";
+
+            const meta = document.createElement("div");
+            meta.className = "product-meta";
+
+            const title = document.createElement("h3");
+            title.textContent = product.name;
+            const price = document.createElement("span");
+            price.className = "product-price";
+            price.textContent = formatPrice(product.price);
+            meta.append(title, price);
+
+            const description = document.createElement("p");
+            description.className = "product-description";
+            description.textContent = product.description;
+
+            const addButton = document.createElement("button");
+            addButton.className = "primary-button";
+            addButton.type = "button";
+            addButton.dataset.addProduct = String(product.id);
+            addButton.textContent = "Add to bag";
+
+            const viewButton = document.createElement("button");
+            viewButton.className = "details-button";
+            viewButton.type = "button";
+            viewButton.dataset.viewProduct = String(product.id);
+            viewButton.textContent = "Details";
+
+            const actions = document.createElement("div");
+            actions.className = "product-actions";
+            actions.append(addButton, viewButton);
+            info.append(meta, description, actions);
+            card.append(art, info);
+            productGrid.append(card);
+          }
+        }
+
+        function renderCart() {
+          const available = new Map(products.map((product) => [String(product.id), product]));
+          const entries = Object.entries(cart).filter(([id, quantity]) => {
+            if (!available.has(id)) {
+              return false;
+            }
+            return Number.isInteger(quantity) && quantity > 0;
+          });
+          const count = entries.reduce((sum, [, quantity]) => sum + quantity, 0);
+          const total = entries.reduce((sum, [id, quantity]) => {
+            return sum + available.get(id).price * quantity;
+          }, 0);
+
+          cartItems.replaceChildren();
+          cartCount.textContent = String(count);
+          cartJump.setAttribute("aria-label", `Shopping cart, ${count} items`);
+          cartItemCount.textContent = `${count} ${count === 1 ? "item" : "items"}`;
+          cartTotal.textContent = formatPrice(total);
+          checkoutButton.disabled = count === 0 || isCheckingOut;
+          checkoutNote.textContent = account
+            ? `Signed in as ${account.name}. Your order will be linked to your account.`
+            : "Guest checkout is available. Sign in to link this order to your account.";
+
+          if (!entries.length) {
+            const empty = document.createElement("div");
+            empty.className = "cart-empty";
+            const icon = document.createElement("span");
+            icon.className = "cart-empty-icon";
+            icon.setAttribute("aria-hidden", "true");
+            icon.textContent = "🛍️";
+            const message = document.createElement("span");
+            message.textContent = "Your bag is waiting for something good.";
+            empty.append(icon, message);
+            cartItems.append(empty);
+            return;
+          }
+
+          for (const [id, quantity] of entries) {
+            const product = available.get(id);
+            const item = document.createElement("div");
+            item.className = "cart-item";
+            const details = document.createElement("div");
+            const name = document.createElement("p");
+            name.className = "cart-item-name";
+            name.textContent = product.name;
+            const price = document.createElement("p");
+            price.className = "cart-item-price";
+            price.textContent = `${formatPrice(product.price)} each`;
+            details.append(name, price);
+
+            const control = document.createElement("div");
+            control.className = "quantity-control";
+            const decrease = document.createElement("button");
+            decrease.type = "button";
+            decrease.dataset.changeQuantity = id;
+            decrease.dataset.delta = "-1";
+            decrease.setAttribute("aria-label", `Remove one ${product.name}`);
+            decrease.textContent = "−";
+            const quantityLabel = document.createElement("span");
+            quantityLabel.textContent = String(quantity);
+            const increase = document.createElement("button");
+            increase.type = "button";
+            increase.dataset.changeQuantity = id;
+            increase.dataset.delta = "1";
+            increase.setAttribute("aria-label", `Add one ${product.name}`);
+            increase.textContent = "+";
+            control.append(decrease, quantityLabel, increase);
+            item.append(details, control);
+            cartItems.append(item);
+          }
+        }
+
+        function addToCart(productId) {
+          cart[productId] = (cart[productId] || 0) + 1;
+          saveCart();
+          renderCart();
+          showStatus(checkoutStatus, "Added to your bag.");
+        }
+
+        function renderAccount() {
+          const signedIn = Boolean(account);
+          accountButton.textContent = signedIn ? account.name.split(" ")[0] : "Sign in";
+          accountButton.setAttribute(
+            "aria-label",
+            signedIn ? `Account: ${account.name}` : "Sign in or register",
+          );
+          authForm.hidden = signedIn;
+          authSwitch.hidden = signedIn;
+          accountSummary.hidden = !signedIn;
+          accountName.textContent = signedIn ? account.name : "";
+          if (signedIn) {
+            authTitle.textContent = "Your account";
+            authDescription.textContent = "Your orders will be linked to your account.";
+            return;
+          }
+
+          const registering = authMode === "register";
+          authTitle.textContent = registering ? "Create your account" : "Welcome back";
+          authDescription.textContent = registering
+            ? "Create an account to keep your orders connected."
+            : "Sign in to link orders to your account. Guest checkout is always available.";
+          nameField.hidden = !registering;
+          nameInput.required = registering;
+          passwordInput.autocomplete = registering ? "new-password" : "current-password";
+          authSubmit.textContent = registering ? "Create account" : "Sign in";
+          authSwitch.textContent = registering
+            ? "Already have an account? Sign in"
+            : "New here? Create an account";
+        }
+
+        accountButton.addEventListener("click", () => {
+          renderAccount();
+          showStatus(authStatus, "");
+          accountDialog.showModal();
+        });
+
+        authClose.addEventListener("click", () => accountDialog.close());
+        accountDialog.addEventListener("click", (event) => {
+          if (event.target === accountDialog) {
+            accountDialog.close();
+          }
+        });
+
+        authSwitch.addEventListener("click", () => {
+          authMode = authMode === "login" ? "register" : "login";
+          showStatus(authStatus, "");
+          renderAccount();
+        });
+
+        authForm.addEventListener("submit", async (event) => {
+          event.preventDefault();
+          showStatus(authStatus, "");
+          authSubmit.disabled = true;
+          const registering = authMode === "register";
+          const payload = {
+            email: emailInput.value.trim(),
+            password: passwordInput.value,
+          };
+          if (registering) {
+            payload.name = nameInput.value.trim();
+          }
+
+          try {
+            const result = await request(registering ? REGISTER_URL : LOGIN_URL, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(payload),
+            });
+            if (
+              !result.user ||
+              !Number.isInteger(result.user.id) ||
+              typeof result.user.name !== "string" ||
+              typeof result.user.email !== "string" ||
+              typeof result.token !== "string" ||
+              !/^[a-f0-9]{64}$/i.test(result.token)
+            ) {
+              throw new Error("The account response from the API was incomplete.");
+            }
+            account = { ...result.user, token: result.token };
+            try {
+              sessionStorage.setItem(USER_STORAGE_KEY, JSON.stringify(account));
+            } catch (error) {
+              console.log("Could not save the account for this session:", error);
+              showStatus(authStatus, "Signed in, but the session could not be saved in this browser.", true);
+              account = null;
+              renderAccount();
+              return;
+            }
+            authForm.reset();
+            renderAccount();
+            renderCart();
+            accountDialog.close();
+            showStatus(checkoutStatus, `Welcome, ${account.name}.`);
+          } catch (error) {
+            showStatus(authStatus, error.message, true);
+          } finally {
+            authSubmit.disabled = false;
+          }
+        });
+
+        signOutButton.addEventListener("click", async () => {
+          const token = account?.token;
+          account = null;
+          try {
+            sessionStorage.removeItem(USER_STORAGE_KEY);
+          } catch (error) {
+            console.log("Could not clear the account from this session:", error);
+          }
+          authMode = "login";
+          renderAccount();
+          renderCart();
+          accountDialog.close();
+          try {
+            await request("http://localhost:5000/api/logout", {
+              method: "POST",
+              headers: { Authorization: `Bearer ${token}` },
+            });
+            showStatus(checkoutStatus, "You’ve signed out. Guest checkout is still available.");
+          } catch (error) {
+            console.log("Could not invalidate the server session during sign-out:", error);
+            showStatus(
+              checkoutStatus,
+              "You’ve signed out in this browser. The server session will expire automatically.",
+              true,
+            );
+          }
+        });
+
+        productGrid.addEventListener("click", (event) => {
+          const viewButton = event.target.closest("[data-view-product]");
+          if (viewButton) {
+            navigateToProduct(viewButton.dataset.viewProduct);
+            return;
+          }
+          const addButton = event.target.closest("[data-add-product]");
+          if (addButton) {
+            addToCart(addButton.dataset.addProduct);
+          }
+        });
+
+        productDetail.addEventListener("click", (event) => {
+          const backButton = event.target.closest('[data-navigate="collection"]');
+          if (backButton) {
+            navigateToCollection();
+            return;
+          }
+          const addButton = event.target.closest("[data-add-product]");
+          if (addButton) {
+            addToCart(addButton.dataset.addProduct);
+          }
+        });
+
+        window.addEventListener("hashchange", renderRoute);
+        window.addEventListener("popstate", renderRoute);
+        searchInput.addEventListener("input", renderProducts);
+        sortSelect.addEventListener("change", renderProducts);
+
+        cartItems.addEventListener("click", (event) => {
+          const button = event.target.closest("[data-change-quantity]");
+          if (!button) {
+            return;
+          }
+          const id = button.dataset.changeQuantity;
+          const quantity = (cart[id] || 0) + Number(button.dataset.delta);
+          if (quantity > 0) {
+            cart[id] = quantity;
+          } else {
+            delete cart[id];
+          }
+          saveCart();
+          renderCart();
+          showStatus(checkoutStatus, "");
+        });
+
+        cartJump.addEventListener("click", () => {
+          document.querySelector("#cart").scrollIntoView({ behavior: "smooth" });
+        });
+
+        checkoutButton.addEventListener("click", async () => {
+          if (isCheckingOut) {
+            return;
+          }
+
+          isCheckingOut = true;
+          checkoutButton.textContent = "Placing order…";
+          showStatus(checkoutStatus, "");
+          renderCart();
+          let placed = 0;
+
+          try {
+            for (const [productId, quantity] of Object.entries(cart)) {
+              await request(ORDERS_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                ...(account
+                  ? { headers: { "Content-Type": "application/json", Authorization: `Bearer ${account.token}` } }
+                  : {}),
+                body: JSON.stringify({
+                  productId: Number(productId),
+                  quantity,
+                }),
+              });
+              delete cart[productId];
+              placed += 1;
+              saveCart();
+            }
+            showStatus(checkoutStatus, `Order${placed === 1 ? "" : "s"} placed successfully. Thank you!`);
+          } catch (error) {
+            if (error.status === 401 && account) {
+              account = null;
+              try {
+                sessionStorage.removeItem(USER_STORAGE_KEY);
+              } catch (storageError) {
+                console.log("Could not clear an expired account session:", storageError);
+              }
+              renderAccount();
+            }
+            const message =
+              placed > 0
+                ? `${placed} order${placed === 1 ? "" : "s"} placed. The remaining items are still in your bag. ${error.message}`
+                : `We couldn’t place your order. Your bag is unchanged. ${error.message}`;
+            showStatus(checkoutStatus, message, true);
+          } finally {
+            isCheckingOut = false;
+            checkoutButton.textContent = "Checkout";
+            renderCart();
+          }
+        });
+
+        async function loadProducts() {
+          try {
+            const result = await request(PRODUCTS_URL);
+            if (!Array.isArray(result)) {
+              throw new Error("The API returned an unexpected product list.");
+            }
+            products = result.filter(
+              (product) =>
+                Number.isInteger(product.id) &&
+                typeof product.name === "string" &&
+                typeof product.description === "string" &&
+                Number.isFinite(product.price),
+            );
+            const validIds = new Set(products.map((product) => String(product.id)));
+            cart = Object.fromEntries(
+              Object.entries(cart).filter(([id]) => validIds.has(id)),
+            );
+            saveCart();
+            renderProducts();
+            renderRoute();
+            renderCart();
+          } catch (error) {
+            productGrid.replaceChildren();
+            const message = document.createElement("p");
+            message.className = "empty-products";
+            message.textContent = `${error.message} Once it’s running, refresh this page to load products.`;
+            productGrid.append(message);
+            renderCart();
+          }
+        }
+
+        renderAccount();
+        renderCart();
+        loadProducts();
+      })();
+    </script>
+  </body>
+</html>
